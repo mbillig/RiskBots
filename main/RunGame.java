@@ -32,16 +32,16 @@ import move.AttackTransferMove;
 import move.MoveResult;
 import move.PlaceArmiesMove;
 
-import org.bson.types.ObjectId;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.ServerAddress;
+//import org.bson.types.ObjectId;
+//import com.mongodb.MongoClient;
+//import com.mongodb.MongoException;
+//import com.mongodb.WriteConcern;
+//import com.mongodb.DB;
+//import com.mongodb.DBObject;
+//import com.mongodb.DBCollection;
+//import com.mongodb.BasicDBObject;
+//import com.mongodb.DBCursor;
+//import com.mongodb.ServerAddress;
 
 public class RunGame
 {
@@ -57,7 +57,7 @@ public class RunGame
 
 	Engine engine;
 
-	DB db;
+	//DB db;
 
 	public static void main(String args[]) throws Exception
 	{	
@@ -85,12 +85,15 @@ public class RunGame
 		IORobot bot1, bot2;
 		int startingArmies;
 
-		db = new MongoClient("localhost", 27017).getDB("test");
+	//	db = new MongoClient("localhost", 27017).getDB("test");
 		
 		//setup the bots
-		bot1 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer1 " + bot1Dir);
-		bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
+	//	bot1 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer1 " + bot1Dir);
+	//	bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
 
+		bot1 = new IORobot(bot1Dir);
+		bot2 = new IORobot(bot2Dir);
+		
 		startingArmies = 5;
 		player1 = new Player(playerName1, bot1, startingArmies);
 		player2 = new Player(playerName2, bot2, startingArmies);
@@ -157,48 +160,48 @@ public class RunGame
 		SuperRegion azia = new SuperRegion(5, 7);
 		SuperRegion australia = new SuperRegion(6, 2);
 
-		Region region1 = new Region(1, northAmerica);
-		Region region2 = new Region(2, northAmerica);
-		Region region3 = new Region(3, northAmerica);
-		Region region4 = new Region(4, northAmerica);
-		Region region5 = new Region(5, northAmerica);
-		Region region6 = new Region(6, northAmerica);
-		Region region7 = new Region(7, northAmerica);
-		Region region8 = new Region(8, northAmerica);
-		Region region9 = new Region(9, northAmerica);
-		Region region10 = new Region(10, southAmerica);
-		Region region11 = new Region(11, southAmerica);
-		Region region12 = new Region(12, southAmerica);
-		Region region13 = new Region(13, southAmerica);
-		Region region14 = new Region(14, europe);
-		Region region15 = new Region(15, europe);
-		Region region16 = new Region(16, europe);
-		Region region17 = new Region(17, europe);
-		Region region18 = new Region(18, europe);
-		Region region19 = new Region(19, europe);
-		Region region20 = new Region(20, europe);
-		Region region21 = new Region(21, afrika);
-		Region region22 = new Region(22, afrika);
-		Region region23 = new Region(23, afrika);
-		Region region24 = new Region(24, afrika);
-		Region region25 = new Region(25, afrika);
-		Region region26 = new Region(26, afrika);
-		Region region27 = new Region(27, azia);
-		Region region28 = new Region(28, azia);
-		Region region29 = new Region(29, azia);
-		Region region30 = new Region(30, azia);
-		Region region31 = new Region(31, azia);
-		Region region32 = new Region(32, azia);
-		Region region33 = new Region(33, azia);
-		Region region34 = new Region(34, azia);
-		Region region35 = new Region(35, azia);
-		Region region36 = new Region(36, azia);
-		Region region37 = new Region(37, azia);
-		Region region38 = new Region(38, azia);
-		Region region39 = new Region(39, australia);
-		Region region40 = new Region(40, australia);
-		Region region41 = new Region(41, australia);
-		Region region42 = new Region(42, australia);
+		Region region1 = new Region(1, northAmerica); //Alaska
+		Region region2 = new Region(2, northAmerica); //North West Territory
+		Region region3 = new Region(3, northAmerica); //Greenland
+		Region region4 = new Region(4, northAmerica); //Alberta
+		Region region5 = new Region(5, northAmerica); //Ontario
+		Region region6 = new Region(6, northAmerica); //Quebec
+		Region region7 = new Region(7, northAmerica); //Western US
+		Region region8 = new Region(8, northAmerica); //Eastern US
+		Region region9 = new Region(9, northAmerica); //Central America
+		Region region10 = new Region(10, southAmerica); //Venezuela
+		Region region11 = new Region(11, southAmerica); //Peru
+		Region region12 = new Region(12, southAmerica); //Brazil
+		Region region13 = new Region(13, southAmerica); //Argentina
+		Region region14 = new Region(14, europe); //Iceland
+		Region region15 = new Region(15, europe); //Great Britain
+		Region region16 = new Region(16, europe); //Scandinavia
+		Region region17 = new Region(17, europe); //Ukraine
+		Region region18 = new Region(18, europe); //Western Europe
+		Region region19 = new Region(19, europe); //Northern Europe
+		Region region20 = new Region(20, europe); //Southern Europe
+		Region region21 = new Region(21, afrika); //North Africa
+		Region region22 = new Region(22, afrika); //Egypt
+		Region region23 = new Region(23, afrika); //East Africa
+		Region region24 = new Region(24, afrika); //Congo
+		Region region25 = new Region(25, afrika); //South Africa
+		Region region26 = new Region(26, afrika); //Madagascar
+		Region region27 = new Region(27, azia); //Ural
+		Region region28 = new Region(28, azia); //Siberia
+		Region region29 = new Region(29, azia); //Yakutsk
+		Region region30 = new Region(30, azia); //Kamchatka
+		Region region31 = new Region(31, azia); //Irkutsk
+		Region region32 = new Region(32, azia); //Afghanistan
+		Region region33 = new Region(33, azia); //China
+		Region region34 = new Region(34, azia); //Mongolia
+		Region region35 = new Region(35, azia); //Japan
+		Region region36 = new Region(36, azia); //Middle East
+		Region region37 = new Region(37, azia); //India
+		Region region38 = new Region(38, azia); //Siam
+		Region region39 = new Region(39, australia); //Indonesia
+		Region region40 = new Region(40, australia); //New Guinea
+		Region region41 = new Region(41, australia); //Western Australia
+		Region region42 = new Region(42, australia); //Eastern Australia
 		
 		region1.addNeighbor(region2);
 		region1.addNeighbor(region4);
@@ -468,47 +471,56 @@ public class RunGame
 
 		Player winner = this.engine.winningPlayer();
 		int score = this.engine.getRoundNr() - 1;
-
-		DBCollection coll = db.getCollection("games");
-
-		DBObject queryDoc = new BasicDBObject()
-			.append("_id", new ObjectId(gameId));
-
-		ObjectId bot1ObjectId = new ObjectId(bot1Id);
-		ObjectId bot2ObjectId = new ObjectId(bot2Id);
-
-		ObjectId winnerId = null;
-		if(winner != null) {
-			winnerId = winner.getName() == playerName1 ? bot1ObjectId : bot2ObjectId;
+		String winnerName = "none";
+		if(winner != null){
+			winnerName = winner.getName();
 		}
+		System.out.println("finished!");
 
-		//create game directory
-		String dir = "/var/www/theaigames/public/games/" + gameId;
-		new File(dir).mkdir();
+		System.out.printf("winner is %s\r\n", winnerName);
+		System.out.printf("score is %d\r\n", score);
 
-		DBObject updateDoc = new BasicDBObject()
-			.append("$set", new BasicDBObject()
-				.append("winner", winnerId)
-				.append("score", score)
-				.append("visualization", 
-					compressGZip(
-						getPlayedGame(winner, "fullGame") + 
-						getPlayedGame(winner, "player1") + 
-						getPlayedGame(winner, "player2"), 
-						dir + "/visualization"
-					)
-				)
-				.append("errors", new BasicDBObject()
-					.append(bot1Id, compressGZip(bot1.getStderr(), dir + "/bot1Errors"))
-					.append(bot2Id, compressGZip(bot2.getStderr(), dir + "/bot2Errors"))
-				)
-				.append("dump", new BasicDBObject()
-					.append(bot1Id, compressGZip(bot1.getDump(), dir + "/bot1Dump"))
-					.append(bot2Id, compressGZip(bot2.getDump(), dir + "/bot2Dump"))
-				)
-				.append("ranked", 0)
-			);
-		
-		coll.findAndModify(queryDoc, updateDoc);
+//
+//		DBCollection coll = db.getCollection("games");
+//
+//		DBObject queryDoc = new BasicDBObject()
+//			.append("_id", new ObjectId(gameId));
+//
+//		ObjectId bot1ObjectId = new ObjectId(bot1Id);
+//		ObjectId bot2ObjectId = new ObjectId(bot2Id);
+//
+//		ObjectId winnerId = null;
+//		if(winner != null) {
+//			winnerId = winner.getName() == playerName1 ? bot1ObjectId : bot2ObjectId;
+//		}
+//
+//		//create game directory
+//		String dir = "/var/www/theaigames/public/games/" + gameId;
+//		new File(dir).mkdir();
+//
+//		DBObject updateDoc = new BasicDBObject()
+//			.append("$set", new BasicDBObject()
+//				.append("winner", winnerId)
+//				.append("score", score)
+//				.append("visualization", 
+//					compressGZip(
+//						getPlayedGame(winner, "fullGame") + 
+//						getPlayedGame(winner, "player1") + 
+//						getPlayedGame(winner, "player2"), 
+//						dir + "/visualization"
+//					)
+//				)
+//				.append("errors", new BasicDBObject()
+//					.append(bot1Id, compressGZip(bot1.getStderr(), dir + "/bot1Errors"))
+//					.append(bot2Id, compressGZip(bot2.getStderr(), dir + "/bot2Errors"))
+//				)
+//				.append("dump", new BasicDBObject()
+//					.append(bot1Id, compressGZip(bot1.getDump(), dir + "/bot1Dump"))
+//					.append(bot2Id, compressGZip(bot2.getDump(), dir + "/bot2Dump"))
+//				)
+//				.append("ranked", 0)
+//			);
+//		
+//		coll.findAndModify(queryDoc, updateDoc);
 	}
 }
