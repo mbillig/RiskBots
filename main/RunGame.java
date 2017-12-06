@@ -470,8 +470,35 @@ public class RunGame
 	public void saveGame(IORobot bot1, IORobot bot2) {
 
 		Player winner = this.engine.winningPlayer();
+		String player1Name = this.engine.getPlayer1Name();
+		String player2Name = this.engine.getPlayer2Name();
 		int score = this.engine.getRoundNr() - 1;
-		double fitness = score;
+		int fitness1;
+		int fitness2;
+		
+		Map finalMap = this.engine.getMap();
+		LinkedList<Region> regions = finalMap.getRegions();
+		int player1Count = 0;
+		int player2Count = 0;
+		for(Region r : regions) {
+			if(r.getPlayerName() == player1Name) {
+				player1Count++;
+			}else if (r.getPlayerName() == player2Name) {
+				player2Count++;
+			}
+		}
+		
+		if(winner.getName() == player1Name) {
+			fitness1 = score;
+			fitness2 = 142 + (100-score)/2;
+		}else if (winner.getName() == player2Name) {
+			fitness2 = score;
+			fitness1 = 142+ (100-score)/2;
+		}else {
+			fitness1 = 100 + (42 - player1Count);
+			fitness2 = 100 + (42 - player2Count);
+		}
+		
 		String winnerName = "none";
 		if(winner != null){
 			winnerName = winner.getName();
@@ -480,7 +507,8 @@ public class RunGame
 
 		System.out.printf("winner is %s\r\n", winnerName);
 		System.out.printf("score is %d\r\n", score);
-		System.out.printf("fitness %d\r\n", fitness);
+		System.out.printf("fitness1 %d\r\n", fitness1);
+		System.out.printf("fitness2 %d\r\n", fitness2);
 
 //
 //		DBCollection coll = db.getCollection("games");

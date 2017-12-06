@@ -528,6 +528,18 @@ public class Engine {
 			return null;
 	}
 	
+	public String getPlayer1Name() {
+		return player1.getName();
+	}
+	
+	public String getPlayer2Name() {
+		return player2.getName();
+	}
+	
+	public Map getMap() {
+		return map;
+	}
+	
 	public LinkedList<MoveResult> getFullPlayedGame() {
 		return fullPlayedGame;
 	}

@@ -122,7 +122,7 @@ public class BotVars implements Bot
 	                borderingRegions.add(current);
 				}
 
-		}
+			}
 		}
 
         int numToPlace = (int)Math.ceil((double)numArmies/borderingRegions.size());
