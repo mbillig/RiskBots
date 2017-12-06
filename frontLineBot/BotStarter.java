@@ -29,6 +29,7 @@ public class BotStarter implements Bot
 	public int minAttackNum = 5;
 	public int attackNumDivisor = 2;
 	public int minTransNum = 1;
+	public int[] startingRegions = new int[6];
 	
 	@Override
 	/**

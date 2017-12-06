@@ -30,13 +30,15 @@ public class BotVars implements Bot
 	public int minAttackNum = 5;
 	public int attackNumDivisor = 2;
 	public int minTransNum = 1;
+	public int[] startingRegions = new int[6];
 	
 	public BotVars() {}
 	
-	public BotVars (int minAttackNum, int attackNumDivisor, int minTransNum){
+	public BotVars (int minAttackNum, int attackNumDivisor, int minTransNum, int[] startingRegions){
 		this.minAttackNum = minAttackNum;
 		this.attackNumDivisor = attackNumDivisor;
 		this.minTransNum = minTransNum;
+		this.startingRegions = startingRegions;
 	}
 	
 //	@Override
@@ -52,13 +54,11 @@ public class BotVars implements Bot
 	 */
 	public ArrayList<Region> getPreferredStartingRegions(BotState state, Long timeOut)
 	{
-		int m = 6;
+		int m = startingRegions.length;
 		ArrayList<Region> preferredStartingRegions = new ArrayList<Region>();
 		for(int i=0; i<m; i++)
 		{
-			double rand = Math.random();
-			int r = (int) (rand*state.getPickableStartingRegions().size());
-			int regionId = state.getPickableStartingRegions().get(r).getId();
+			int regionId = startingRegions[i];
 			Region region = state.getFullMap().getRegion(regionId);
 
 			if(!preferredStartingRegions.contains(region))
@@ -212,8 +212,15 @@ public class BotVars implements Bot
 		int minAttackNum = Integer.parseInt(args[0]);
 		int attackNumDivisor = Integer.parseInt(args[1]);
 		int minTransNum = Integer.parseInt(args[2]); 
-		//setParams(minAttackNum, attackNumDivisor, minTransNum);
-		BotParser parser = new BotParser(new BotVars(minAttackNum, attackNumDivisor, minTransNum));
+		int startingRegions[] = new int[6];
+		startingRegions[0] = Integer.parseInt(args[3]);
+		startingRegions[1] = Integer.parseInt(args[4]);
+		startingRegions[2] = Integer.parseInt(args[5]);
+		startingRegions[3] = Integer.parseInt(args[6]);
+		startingRegions[4] = Integer.parseInt(args[7]);
+		startingRegions[5] = Integer.parseInt(args[8]);
+		
+		BotParser parser = new BotParser(new BotVars(minAttackNum, attackNumDivisor, minTransNum, startingRegions));
 		parser.run();
 	}
 
