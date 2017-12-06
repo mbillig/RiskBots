@@ -68,7 +68,7 @@ public class BotParser {
 				else if(parts[1].equals("attack/transfer")) 
 				{
 					//attack/transfer
-					ArrayList<AttackTransferMove> attackTransferMoves = bot.getAttackTransferMoves(currentState, Long.valueOf(parts[2]));
+					ArrayList<AttackTransferMove> attackTransferMoves = bot.getAttackTransferMoves(bot, currentState, Long.valueOf(parts[2]));
 					for(AttackTransferMove move : attackTransferMoves)
 						output = output.concat(move.getString() + ",");
 				}

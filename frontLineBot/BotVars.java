@@ -24,11 +24,25 @@ import main.Region;
 import move.AttackTransferMove;
 import move.PlaceArmiesMove;
 
-public class BotStarter implements Bot 
+public class BotVars implements Bot 
 {
+	
 	public int minAttackNum = 5;
 	public int attackNumDivisor = 2;
 	public int minTransNum = 1;
+	
+	public BotVars() {}
+	
+	public BotVars (int minAttackNum, int attackNumDivisor, int minTransNum){
+		this.minAttackNum = minAttackNum;
+		this.attackNumDivisor = attackNumDivisor;
+		this.minTransNum = minTransNum;
+	}
+	
+//	@Override
+//	public void setParams(int minAttackNum, int attackNumDivisor, int minTransNum) {
+//		System.out.println(super.getClass());
+//	}
 	
 	@Override
 	/**
@@ -153,8 +167,11 @@ public class BotStarter implements Bot
 	{
 		ArrayList<AttackTransferMove> attackTransferMoves = new ArrayList<AttackTransferMove>();
 		String myName = state.getMyPlayerName();
-		int armies = 5;
-		
+		BotVars botVars = (BotVars)bot;
+		int minAttackNum = botVars.minAttackNum;
+		int attackNumDivisor = botVars.attackNumDivisor;
+		int minTransNum = botVars.minTransNum;
+		//int armies = 5;
 		for(Region fromRegion : state.getVisibleMap().getRegions())
 		{
 			if(fromRegion.ownedByPlayer(myName)) //do an attack
@@ -168,15 +185,15 @@ public class BotStarter implements Bot
 					int r = (int) (rand*possibleToRegions.size());
 					Region toRegion = possibleToRegions.get(r);
 					
-					if(!toRegion.getPlayerName().equals(myName) && fromRegion.getArmies() > 3) //do an attack
+					if(!toRegion.getPlayerName().equals(myName) && fromRegion.getArmies() > minAttackNum) //do an attack
 					{
-						attackTransferMoves.add(new AttackTransferMove(myName, fromRegion, toRegion, fromRegion.getArmies()/2));
+						attackTransferMoves.add(new AttackTransferMove(myName, fromRegion, toRegion, fromRegion.getArmies()/attackNumDivisor));
 						break;
 					}
-					else if(toRegion.getPlayerName().equals(myName) && isBorder(toRegion, myName) && fromRegion.getArmies() > 1) //do a transfer
+					else if(toRegion.getPlayerName().equals(myName) && isBorder(toRegion, myName) && fromRegion.getArmies() > minTransNum) //do a transfer
 					{
 						if(!isBorder(fromRegion, myName)){
-						attackTransferMoves.add(new AttackTransferMove(myName, fromRegion, toRegion, fromRegion.getArmies()-1));
+						attackTransferMoves.add(new AttackTransferMove(myName, fromRegion, toRegion, fromRegion.getArmies()-minTransNum));
 					}
 						break;
 					 
@@ -192,7 +209,11 @@ public class BotStarter implements Bot
 
 	public static void main(String[] args)
 	{
-		BotParser parser = new BotParser(new BotStarter());
+		int minAttackNum = Integer.parseInt(args[0]);
+		int attackNumDivisor = Integer.parseInt(args[1]);
+		int minTransNum = Integer.parseInt(args[2]); 
+		//setParams(minAttackNum, attackNumDivisor, minTransNum);
+		BotParser parser = new BotParser(new BotVars(minAttackNum, attackNumDivisor, minTransNum));
 		parser.run();
 	}
 

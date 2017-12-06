@@ -471,6 +471,7 @@ public class RunGame
 
 		Player winner = this.engine.winningPlayer();
 		int score = this.engine.getRoundNr() - 1;
+		double fitness = score;
 		String winnerName = "none";
 		if(winner != null){
 			winnerName = winner.getName();
@@ -479,6 +480,7 @@ public class RunGame
 
 		System.out.printf("winner is %s\r\n", winnerName);
 		System.out.printf("score is %d\r\n", score);
+		System.out.printf("fitness %d\r\n", fitness);
 
 //
 //		DBCollection coll = db.getCollection("games");

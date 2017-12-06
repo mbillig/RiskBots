@@ -62,9 +62,10 @@ public class Botv2 implements Bot
 	public ArrayList<Region> rankRegions(BotState state){
 		int numRegions = 42;
 		Region region;
-		for(iRegion = 1; iRegion < numRegions; iRegion++){
+		for(int iRegion = 1; iRegion < numRegions; iRegion++){
 			
 		}
+		return null;
 	}
 	@Override
 	/**
