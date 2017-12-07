@@ -473,8 +473,8 @@ public class RunGame
 		String player1Name = this.engine.getPlayer1Name();
 		String player2Name = this.engine.getPlayer2Name();
 		int score = this.engine.getRoundNr() - 1;
-		int fitness1;
-		int fitness2;
+		int fitness1 = 300;
+		int fitness2 = 300;
 		
 		Map finalMap = this.engine.getMap();
 		LinkedList<Region> regions = finalMap.getRegions();
@@ -488,21 +488,21 @@ public class RunGame
 			}
 		}
 		
-		if(winner.getName() == player1Name) {
-			fitness1 = score;
-			fitness2 = 142 + (100-score)/2;
-		}else if (winner.getName() == player2Name) {
-			fitness2 = score;
-			fitness1 = 142+ (100-score)/2;
+		String winnerName = "none";
+		if(winner != null){
+			winnerName = winner.getName();
+			if(winnerName == player1Name) {
+				fitness1 = score;
+				fitness2 = 142 + (100-score)/2;
+			}else if (winnerName == player2Name) {
+				fitness2 = score;
+				fitness1 = 142+ (100-score)/2;
+			}
 		}else {
 			fitness1 = 100 + (42 - player1Count);
 			fitness2 = 100 + (42 - player2Count);
 		}
 		
-		String winnerName = "none";
-		if(winner != null){
-			winnerName = winner.getName();
-		}
 		System.out.println("finished!");
 
 		System.out.printf("winner is %s\r\n", winnerName);
